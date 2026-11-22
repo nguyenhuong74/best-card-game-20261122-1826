@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four Winds Duel — a card game</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">FOUR WINDS DUEL</div>
+    <div id="turn-banner" class="turn-banner" hidden></div>
+  </header>
+
+  <main id="table">
+    <!-- Opponent row -->
+    <section id="foe-zone" class="zone foe-zone">
+      <div class="portrait foe-portrait" id="foe-portrait">🌪️</div>
+      <div class="fighter">
+        <div class="fighter-name" id="foe-name">Warden of the Gale</div>
+        <div class="hp-row">
+          <span class="hp-label">HP</span>
+          <div class="hp-bar"><div id="foe-hp-fill" class="hp-fill foe"></div></div>
+          <span id="foe-hp-text" class="hp-text">30 / 30</span>
+        </div>
+        <div class="block-row" id="foe-block-row" hidden>🛡️ Block <b id="foe-block">0</b></div>
+      </div>
+      <div id="foe-hand" class="hand foe-hand" aria-label="Opponent hand"></div>
+    </section>
+
+    <!-- Middle: played cards + log -->
+    <section id="mid-zone" class="zone mid-zone">
+      <div id="played-row" class="played-row" aria-label="Cards played this turn"></div>
+      <div id="log" class="log" aria-live="polite"></div>
+    </section>
+
+    <!-- Player row -->
+    <section id="you-zone" class="zone you-zone">
+      <div class="portrait you-portrait" id="you-portrait">🔥</div>
+      <div class="fighter">
+        <div class="fighter-name" id="you-name">You — Ember Keeper</div>
+        <div class="hp-row">
+          <span class="hp-label">HP</span>
+          <div class="hp-bar"><div id="you-hp-fill" class="hp-fill you"></div></div>
+          <span id="you-hp-text" class="hp-text">30 / 30</span>
+        </div>
+        <div class="block-row" id="you-block-row" hidden>🛡️ Block <b id="you-block">0</b></div>
+        <div class="energy-row">⚡ Energy <b id="you-energy">3</b> / 3</div>
+      </div>
+      <div id="you-hand" class="hand you-hand" aria-label="Your hand"></div>
+    </section>
+
+    <div id="controls" class="controls">
+      <button id="end-turn" class="btn primary">End turn ⏎</button>
+      <button id="restart" class="btn">Restart (R)</button>
+      <span id="resonance-chip" class="resonance-chip" hidden>✦ Resonance ready — your next card of a played suit gains +2</span>
+      <span id="hint" class="hint">Click a card or press 1–5 to play it. Same suit twice in a turn: +2 Resonance.</span>
+    </div>
+  </main>
+
+  <!-- Title screen -->
+  <div id="title-screen" class="overlay title-screen">
+    <div class="title-card">
+      <div class="title-suits">🔥 💧 🌿 🌪️</div>
+      <h1>FOUR WINDS<br>DUEL</h1>
+      <p class="tagline">An original duel of the four winds. Outplay the Warden of the Gale.</p>
+      <ul class="rules-list">
+        <li><b>30 HP</b> each. Bring the Warden to 0 before yours runs out.</li>
+        <li><b>3 energy</b> a turn. Every card costs energy to play.</li>
+        <li><b>Resonance:</b> play two cards of the same suit in one turn — the second gains <b>+2</b>.</li>
+        <li><b>Strikes</b> deal damage, <b>Wards</b> block it, <b>Mends</b> heal, <b>Insights</b> draw cards.</li>
+        <li>Mouse or keyboard: <b>1–5</b> play a card, <b>Enter</b> ends the turn, <b>R</b> restarts.</li>
+      </ul>
+      <button id="start-btn" class="btn primary big">▶ &nbsp;Begin the duel</button>
+      <p class="foot">A complete card game in your browser. No network, no account, no ads.</p>
+    </div>
+  </div>
+
+  <!-- End screens -->
+  <div id="end-screen" class="overlay end-screen" hidden>
+    <div class="title-card end-card">
+      <div id="end-emoji" class="end-emoji">🏆</div>
+      <h1 id="end-title">VICTORY</h1>
+      <p id="end-line" class="tagline"></p>
+      <p id="end-score" class="end-score"></p>
+      <button id="again-btn" class="btn primary big">↻ &nbsp;Duel again</button>
+    </div>
+  </div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
